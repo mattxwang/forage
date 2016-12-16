@@ -1,3 +1,5 @@
+print " Importing libraries..."
+
 import sys # this lets us receive passed arguments in the command line
 import getopt # this lets us receive arguments and options in the command line
 import json # this lets us parse JSON files
@@ -7,10 +9,16 @@ import calendar # this helps us understand dates
 import requests # this helps us make good HTTP requests
 from contextlib import closing # this helps us make good HTTP requests
 
+print " Importing done!"
+
+# Setting a few variables
+
 output = {}
 data = {}
 write = False
 hydrometric = False
+
+# Here, we get the arguments and parameters passed to our script, and do things accordingly!
 
 try:
     opts, args = getopt.getopt(sys.argv[1:], 'w:p:h', ['write=', 'help'])
@@ -32,24 +40,43 @@ for opt, arg in opts:
 # if (write == "yaml" or "YAML"):
 #     import yaml
 
+print " Opening settings from settings.json ..."
+
+# We open settings.json and load it to settings
+
 with open('settings.json') as settings_file:
     settings = json.load(settings_file)
+
+# This enables hydrometrics
 
 if (settings["global"]["hydrometric"] == "enabled"):
     output["hydrometric"] = {}
     data["hydrometric"]= {}
     hydrometric = True
 
+print " Settings configured!"
+
+print " Fetching data..."
+
+# This iterates through all endpoints and fetches the data.
+
 for endpoint in settings["endpoints"]:
     if (settings["endpoints"][endpoint]["type"] == "hydrometric" and hydrometric == True):
         endpoint = settings["endpoints"][endpoint]
         output["hydrometric"][endpoint["id"]] = []
-        url = endpoint["root"] + endpoint["province"] + "/" + endpoint["timescale"] + "/" + endpoint["province"] + "_" + endpoint["id"] + "_" + endpoint["timescale"] + "_hydrometric.csv"
+        url = endpoint["root"] + endpoint["type"] + "/csv/" + endpoint["province"] + "/" + endpoint["timescale"] + "/" + endpoint["province"] + "_" + endpoint["id"] + "_" + endpoint["timescale"] + "_hydrometric.csv"
         with closing(requests.get(url, stream=True)) as r:
             reader = csv.reader(r.iter_lines(), delimiter=',', quotechar='"')
             for row in reader:
                 output["hydrometric"][endpoint["id"]].append(row)
         output["hydrometric"][endpoint["id"]] = output["hydrometric"][endpoint["id"]][1:]
+
+print " Data fetched!"
+
+print " Organzing data..."
+
+# This organizes the data; this function is also poorly designed, and will be removed sooner or later.
+
 if (hydrometric == True):
     for dataset in output["hydrometric"]:
         data["hydrometric"][dataset] = []
@@ -58,7 +85,12 @@ if (hydrometric == True):
             if (row):
                 data["hydrometric"][dataset].append([settings["endpoints"][row[0]]["timescale"], settings["endpoints"][row[0]]["name"], row[0], calendar.timegm(dateutil.parser.parse(row[1]).utctimetuple()), row[2], row[6]])
 
+print " Data Organized!"
+
+# If the write type is CSV, this function outputs to a CSV file called output-hydrometric.csv
+
 if (write == "csv" or write == "CSV"):
+    print " Writing data to CSV..."
     if (hydrometric == True):
         with open('output-hydrometric.csv', 'wb') as csvfile:
             writer = csv.writer(csvfile)
@@ -68,13 +100,20 @@ if (write == "csv" or write == "CSV"):
                     row = data["hydrometric"][dataset][i]
                     if (row):
                         writer.writerow(["Hydrometric"] + row)
+    print " Write to CSV complete!"
+
+# If the write type is JSON, this function outputs to a JSON file called output-hydrometric.json
 
 elif (write == "json" or write == "JSON"):
+    print " Writing data to JSON..."
     if (hydrometric == True):
         with open('output-hydrometric.json', 'w') as outfile:
             json.dump(data, outfile)
+    print " Write to JSON complete!"
 # Coming soon: YAML support!
 # elif (write == "yaml" or "YAML"):
 #     if (hydrometric == True):
 #         with open('output-hydrometric.yml', 'w') as outfile:
 #             yaml.dump(data, outfile, default_flow_style=True)
+print " Script complete!"
+print " Shutting down..."

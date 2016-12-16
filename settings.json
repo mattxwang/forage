@@ -9,7 +9,7 @@
       "id": "02HB025",
       "province": "ON",
       "timescale": "daily",
-      "root": "http://dd.weather.gc.ca/hydrometric/csv/"
+      "root": "http://dd.weather.gc.ca/"
     },
     "02HB008": {
       "type" : "hydrometric",
@@ -17,7 +17,7 @@
       "id": "02HB008",
       "province": "ON",
       "timescale": "hourly",
-      "root": "http://dd.weather.gc.ca/hydrometric/csv/"
+      "root": "http://dd.weather.gc.ca/"
     }
   }
 }
