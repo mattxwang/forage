@@ -1,18 +1,27 @@
 language: python
-python:
-  - "2.6"
-  - "2.7"
-# this cheats the fact that travis doesn't have multi-language support
-rvm:
-  - "2.0"
-install: "pip install -r pip-requirements.txt"
-# both of these cheat the fact that travis doesn't have multi-language support, but there aren't that many python libraries that lint csvs and jsons
-before_script:
-  - npm install jsonlint -g
-  - gem install csvlint
-script:
-  - python forage.py
-  - python forage.py -w csv
-  - python forage.py -w json
-  - jsonlint output-hydrometric.json
-  - csvlint output-hydrometric.csv
+matrix:
+  include:
+    - os: linux
+      language: python
+      python: "2.6"
+      install: "pip install -r pip-requirements.txt"
+      # both of these cheat the fact that travis doesn't have multi-language support, but there aren't that many python libraries that lint json properly
+      before_script:
+        - npm install jsonlint -g
+      script:
+        - python forage.py
+        - python forage.py -w csv
+        - python forage.py -w json
+        - jsonlint output-hydrometric.json
+    - os: linux
+      language: python
+      python: "2.7"
+      install: "pip install -r pip-requirements.txt"
+      # both of these cheat the fact that travis doesn't have multi-language support, but there aren't that many python libraries that lint json properly
+      before_script:
+        - npm install jsonlint -g
+      script:
+        - python forage.py
+        - python forage.py -w csv
+        - python forage.py -w json
+        - jsonlint output-hydrometric.json
