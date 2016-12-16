@@ -2,3 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Built Files
+
+output-hydrometric.csv
+output-hydrometric.json

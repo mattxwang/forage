@@ -1,0 +1,23 @@
+{
+  "global": {
+    "hydrometric": "enabled"
+  },
+  "endpoints": {
+    "02HB025": {
+      "type" : "hydrometric",
+      "name": "Credit River at Norval",
+      "id": "02HB025",
+      "province": "ON",
+      "timescale": "daily",
+      "root": "http://dd.weather.gc.ca/hydrometric/csv/"
+    },
+    "02HB008": {
+      "type" : "hydrometric",
+      "name": "Credit River West Branch at Norval",
+      "id": "02HB008",
+      "province": "ON",
+      "timescale": "hourly",
+      "root": "http://dd.weather.gc.ca/hydrometric/csv/"
+    }
+  }
+}
