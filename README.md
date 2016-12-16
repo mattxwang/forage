@@ -1,5 +1,6 @@
 # Forage
 [![Build Status](https://travis-ci.org/NorvalLabs/forage.svg?branch=master)](https://travis-ci.org/NorvalLabs/forage)
+
 A set of tools to pull information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), with support for the hydrometric data for now. Support for more data is coming soon!
 
 ## Settings
