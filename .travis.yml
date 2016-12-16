@@ -4,7 +4,7 @@ python:
   - "2.7"
 # this cheats the fact that travis doesn't have multi-language support
 rvm:
-  - "2.2"
+  - "2.0"
 install: "pip install -r pip-requirements.txt"
 # both of these cheat the fact that travis doesn't have multi-language support, but there aren't that many python libraries that lint csvs and jsons
 before_script:
