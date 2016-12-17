@@ -1,11 +1,11 @@
 # Forage
 [![Build Status](https://travis-ci.org/NorvalLabs/forage.svg?branch=master)](https://travis-ci.org/NorvalLabs/forage)
 
-A set of tools to pull information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), with support for the hydrometric data for now. Support for more data is coming soon!
+A set of tools to pull information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), for use with NorvalLabs. Currently, we support pulling hydrometric data, using Python or Ruby, and outputting to CSV or JSON.
 
-## Settings
+## Build Settings
 
-`settings.json` acts as a settings file for all the build scripts, regardless of language. Let's see how it works:
+`settings.json` acts as a settings file for all the build scripts, regardless of language. We include a sample `settings.json` in this project. Here's a look at it:
 
 ```json
 {
@@ -36,22 +36,34 @@ A set of tools to pull information from the [Canadian Government's Weather API](
 ### Global Settings
 
 The `global` object defines some global settings. You should not have to add or remove any key/value pairs from `global`, just modifying the values.
-* For every type of data you want to get and parse, switch the value for that type to `"enabled"`. If not, switch it to `"disabled"`. e.g. `"hydrometric": "enabled"`  gets and parses hydrometric data, while `"hydrometric": "disabled"` does not
+
+| Property | Description | Accepted Values |
+| --- | --- | --- |
+| `hydrometric` | Enables processing of hydrometric data. | `enabled` (default), `disabled` |
 
 ### Endpoints
 
-Each endpoint has slightly different formats, but the general idea is the same. To add a new endpoint to get/parse, just add a new `endpoint` object. It consists of:
+Each endpoint has slightly different formats, but the general idea is the same. To add a new endpoint to get/parse, just add a new `endpoint` object.
 
-* Key Name: this should be the same as `id`, and is normally the station ID
-* `type`: this should be the type of data collected, as present in the URL (e.g. `hydrometric`)
-* `id`: this should be the same as the key name, and is normally the station ID
-* `province`: the Province the station is located in
-* `timescale`: the supported timescales for your data type: `hydrometric` supports `hourly` and `daily`
-* `root`: the root site we pull from, for now it should always be `http://dd.weather.gc.ca/`
+| Property | Description |
+|---|---|
+| Key Name | This should be the same as `id`, and is normally the station ID |
+| `type` | This should be the type of data collected, as present in the URL (e.g. `hydrometric`) |
+| `id` | This should be the same as the key name, and is normally the station ID |
+| `province` | The two-letter abbreviation of the province the station is located in |
+| `timescale` | The supported timescales for your data type: `hydrometric` supports `hourly` and `daily` |
+| `root` | The root site we pull from, for now it should always be `http://dd.weather.gc.ca/` |
+
+## Script Parameters
+
+| Parameter | Description | Accepted Values | Supported Scripts |
+|---|---| --- | --- |
+| `-w` | Write Parameter: dictates what file type the output is written to. Outputs to `output-DATA-TYPE.FILE-TYPE` | none (default), `csv`, `json` | Python, Ruby |
+| `-h` | Help: displays help with the script (WIP) | N/A | Python, Ruby |
 
 ## Python
 
-*Note: this installation process requires [pip](https://pip.pypa.io/en/stable/). Please install it if you do not already have it!*
+*Note: this script requires [Python 2.7](https://www.python.org/) and [pip](https://pip.pypa.io/en/stable/). Please install these if you do not already have them!*
 
 In order to use the python script, we first need to get our dependencies:
 
@@ -65,16 +77,38 @@ Then, just run our script!
 python forage.py
 ```
 
-But, running the script just pulls the data, and doesn't output it. Luckily, the script takes parameters!
+You can use the script parameters with `forage.py` (if you don't, it doesn't output anything). For example:
 
-The script takes two parameters:
-* `-w` or `--write`
-  * Parameter of what file type to write
-  * Default is none (no file will be written)
-  * Accepts `csv` or `json`
-  * The outputted file(s) is at `API-output.FILETYPE`
-  * Example: `python forage.py -w csv`
-* `-h` or `--help`
-  * Displays help commands (coming soon)
+```
+python forage.py -w json
+```
 
-And, it also uses `settings.json` to know what to get: look above on documentation on how to use it!
+## Ruby
+
+*Note: this script requires [Ruby 2+](https://www.ruby-lang.org/en/), and optionally [Bundle](http://bundler.io/) for linting.*
+
+In order to use the ruby script, simply run it from the command line.
+
+```
+ruby forage.rb
+```
+
+You can use the script parameters with `forage.rb` (if you don't, it doesn't output anything). For example:
+
+```
+ruby forage.rb -w csv
+```
+
+To use optional linting gems, first install them with bundle:
+
+```
+bundle
+```
+
+Then, use either the `csvlint` or  `jsonlint` commands.
+
+```
+csvlint output-hydrometric.csv
+
+jsonlint output.hydrometric.json
+```
