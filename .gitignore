@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Ruby Things
+
+Gemfile.lock
+
 # Built Files
 
 output-hydrometric.csv
