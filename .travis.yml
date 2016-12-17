@@ -1,4 +1,3 @@
-language: python
 matrix:
   include:
     - os: linux
@@ -25,3 +24,23 @@ matrix:
         - python forage.py -w csv
         - python forage.py -w json
         - jsonlint output-hydrometric.json
+    - os: linux
+      language: ruby
+      rvm: "2.2"
+      install: "bundle"
+      script:
+        - ruby forage.rb
+        - ruby forage.rb -w csv
+        - ruby forage.rb -w json
+        - jsonlint output-hydrometric.json
+        - csvlint output-hydrometric.csv
+    - os: osx
+      language: ruby
+      rvm: "2.2"
+      install: "bundle"
+      script:
+        - ruby forage.rb
+        - ruby forage.rb -w csv
+        - ruby forage.rb -w json
+        - jsonlint output-hydrometric.json
+        - csvlint output-hydrometric.csv
