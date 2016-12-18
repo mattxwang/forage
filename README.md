@@ -1,7 +1,17 @@
 # Forage
 [![Build Status](https://travis-ci.org/NorvalLabs/forage.svg?branch=master)](https://travis-ci.org/NorvalLabs/forage)
 
-A set of tools to pull information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), for use with NorvalLabs. Currently, we support pulling hydrometric data, using Python or Ruby, and outputting to CSV or JSON.
+A set of tools to pull and parse information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), for use with NorvalLabs.
+
+Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with supported Python and Ruby scripts, both of which output to either CSV format or JSON format. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (removing some of the clutter). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
+
+In the future, we're planning to add:
+* PHP Support
+* Javascript Support (node-based)
+* Outputted Averages (e.g. average hourly in a day)
+* YAML Output
+* Support scripts 
+* Support for other Weather Data (e.g. barometric data)
 
 ## Build Settings
 
@@ -112,3 +122,7 @@ csvlint output-hydrometric.csv
 
 jsonlint output.hydrometric.json
 ```
+
+## Team
+
+This script was developed by Matthew Wang (@malsf21), who's part of the Norval Labs team.
