@@ -9,5 +9,4 @@ Gemfile.lock
 
 # Built Files
 
-output-hydrometric.csv
-output-hydrometric.json
+output-*

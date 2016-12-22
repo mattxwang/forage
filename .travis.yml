@@ -32,8 +32,10 @@ matrix:
         - ruby forage.rb
         - ruby forage.rb -w csv
         - ruby forage.rb -w json
+        - ruby forage.rb -w yaml
         - jsonlint output-hydrometric.json
         - csvlint output-hydrometric.csv
+        - yamllint output-hydrometric.yaml
     - os: osx
       language: ruby
       rvm: "2.2"
@@ -42,5 +44,7 @@ matrix:
         - ruby forage.rb
         - ruby forage.rb -w csv
         - ruby forage.rb -w json
+        - ruby forage.rb -w yaml
         - jsonlint output-hydrometric.json
         - csvlint output-hydrometric.csv
+        - yamllint output-hydrometric.yaml

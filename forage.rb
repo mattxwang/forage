@@ -1,7 +1,8 @@
 require 'optparse' # we use this to parse arguments/parameters
 require 'time' # we need this to deal with dates and times
-require 'csv' # we need this to read CSV files
-require 'json' # we need this to read JSON files
+require 'csv' # we need this to read/write CSV files
+require 'json' # we need this to read/write JSON files
+require 'yaml' # we need this to read/write YAML files
 require "net/http" # we need this to make http requests
 require "uri" # we need this to make http requests
 
@@ -43,6 +44,8 @@ end
 
 puts " Settings configured!"
 
+# Fetches Data
+
 puts " Fetching data..."
 
 settings["endpoints"].each do |key, value|
@@ -68,6 +71,8 @@ end
 
 puts " Data fetched!"
 
+# If CSV is enabled, writes to CSV
+
 if write == "csv" || write == "CSV"
   puts " Writing data to CSV..."
   if hydrometric == true
@@ -83,6 +88,8 @@ if write == "csv" || write == "CSV"
   puts " Write to CSV complete!"
 end
 
+# If JSON is enabled, writes to JSON
+
 if write == "json" || write == "JSON"
   puts " Writing data to JSON..."
   if hydrometric == true
@@ -92,6 +99,19 @@ if write == "json" || write == "JSON"
   end
   puts " Write to JSON complete!"
 end
+
+# If YAML is enabled, writes to YAML
+
+if write == "yaml" || write == "yml" || write == "YAML" || write == "YML"
+  puts " Writing data to YAML..."
+  if hydrometric == true
+    File.open("output-hydrometric.yaml","w") do |f|
+      f.write(data.to_yaml)
+    end
+  end
+  puts " Write to YAML complete!"
+end
+
 
 puts " Script complete!"
 puts " Shutting down..."

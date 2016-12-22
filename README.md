@@ -10,7 +10,7 @@ In the future, we're planning to add:
 * Javascript Support (node-based)
 * Outputted Averages (e.g. average hourly in a day)
 * YAML Output
-* Support scripts 
+* Support scripts
 * Support for other Weather Data (e.g. barometric data)
 
 ## Build Settings
@@ -68,7 +68,7 @@ Each endpoint has slightly different formats, but the general idea is the same. 
 
 | Parameter | Description | Accepted Values | Supported Scripts |
 |---|---| --- | --- |
-| `-w` | Write Parameter: dictates what file type the output is written to. Outputs to `output-DATA-TYPE.FILE-TYPE` | none (default), `csv`, `json` | Python, Ruby |
+| `-w` | Write Parameter: dictates what file type the output is written to. Outputs to `output-DATA-TYPE.FILE-TYPE` | none (default), `csv`, `json`, `yaml` (ruby only) | Python, Ruby |
 | `-h` | Help: displays help with the script (WIP) | N/A | Python, Ruby |
 
 ## Python
