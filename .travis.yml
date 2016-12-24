@@ -2,15 +2,15 @@ matrix:
   include:
     - os: linux
       language: python
-      python: "2.6"
+      python: "3"
       install: "pip install -r pip-requirements.txt"
       # both of these cheat the fact that travis doesn't have multi-language support, but there aren't that many python libraries that lint json properly
       before_script:
         - npm install jsonlint -g
       script:
-        - python forage.py
-        - python forage.py -w csv
-        - python forage.py -w json
+        - python forage-py3.py
+        - python forage-py3.py -w csv
+        - python forage-py3.py -w json
         - jsonlint output-hydrometric.json
     - os: linux
       language: python

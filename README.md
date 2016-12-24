@@ -3,7 +3,7 @@
 
 A set of tools to pull and parse information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), for use with NorvalLabs.
 
-Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with supported Python and Ruby scripts, both of which output to either CSV format or JSON format. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (removing some of the clutter). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
+Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with supported Python (2.7 and 3!) and Ruby scripts, both of which output to either CSV format or JSON format. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (removing some of the clutter). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
 
 In the future, we're planning to add:
 * PHP Support
@@ -68,12 +68,12 @@ Each endpoint has slightly different formats, but the general idea is the same. 
 
 | Parameter | Description | Accepted Values | Supported Scripts |
 |---|---| --- | --- |
-| `-w` | Write Parameter: dictates what file type the output is written to. Outputs to `output-DATA-TYPE.FILE-TYPE` | none (default), `csv`, `json`, `yaml` (ruby only) | Python, Ruby |
-| `-h` | Help: displays help with the script (WIP) | N/A | Python, Ruby |
+| `-w` | Write Parameter: dictates what file type the output is written to. Outputs to `output-DATA-TYPE.FILE-TYPE` | none (default), `csv`, `json`, `yaml` (ruby only) | Python (2 and 3), Ruby |
+| `-h` | Help: displays help with the script (WIP) | N/A | Python (2 and 3), Ruby |
 
 ## Python
 
-*Note: this script requires [Python 2.7](https://www.python.org/) and [pip](https://pip.pypa.io/en/stable/). Please install these if you do not already have them!*
+*Note: this script requires [Python 2.7 OR 3](https://www.python.org/) and [pip](https://pip.pypa.io/en/stable/). Please install these if you do not already have them!*
 
 In order to use the python script, we first need to get our dependencies:
 
@@ -92,6 +92,8 @@ You can use the script parameters with `forage.py` (if you don't, it doesn't out
 ```
 python forage.py -w json
 ```
+
+If you're running python 3, you might have to use the `python3` and `pip3` commands respectively. Other than that, everything should work!
 
 ## Ruby
 
