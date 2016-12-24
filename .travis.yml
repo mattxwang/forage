@@ -2,7 +2,7 @@ matrix:
   include:
     - os: linux
       language: python
-      python: "3"
+      python: "3.5"
       install: "pip install -r pip-requirements.txt"
       # both of these cheat the fact that travis doesn't have multi-language support, but there aren't that many python libraries that lint json properly
       before_script:
