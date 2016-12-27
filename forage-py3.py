@@ -19,7 +19,7 @@ hydrometric = False
 # Here, we get the arguments and parameters passed to our script, and do things accordingly!
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'w:p:h', ['write=', 'help'])
+    opts, args = getopt.getopt(sys.argv[1:], 'w:h', ['write=', 'help'])
 except getopt.GetoptError:
     print("Uh oh, something went wrong. Try again, and read the docs! Use forage.py -h if you need help.")
     sys.exit(2)
