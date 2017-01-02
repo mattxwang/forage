@@ -1,6 +1,8 @@
 {
   "global": {
-    "hydrometric": "enabled"
+    "hydrometric": {
+      "parse": "enabled"
+    }
   },
   "endpoints": {
     "02HB025": {

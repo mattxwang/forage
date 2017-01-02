@@ -37,7 +37,7 @@ settings = JSON.parse(settingsf)
 
 # Enabling hydrometrics
 
-if (settings["global"]["hydrometric"] == "enabled")
+if (settings["global"]["hydrometric"]["parse"] == "enabled")
   data["hydrometric"] = Hash.new()
   hydrometric = true
 end

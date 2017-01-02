@@ -20,7 +20,9 @@ In the future, we're planning to add:
 ```json
 {
   "global": {
-    "hydrometric": "enabled"
+    "hydrometric": {
+      "parse" : "enabled"
+    }
   },
   "endpoints": {
     "02HB025": {
@@ -49,7 +51,7 @@ The `global` object defines some global settings. You should not have to add or 
 
 | Property | Description | Accepted Values |
 | --- | --- | --- |
-| `hydrometric` | Enables processing of hydrometric data. | `enabled` (default), `disabled` |
+| `parse` | Enables processing of x data type. | `enabled` (default), `disabled` |
 
 ### Endpoints
 

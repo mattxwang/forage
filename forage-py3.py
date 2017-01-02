@@ -47,7 +47,7 @@ with open('settings.json') as settings_file:
 
 # This enables hydrometrics
 
-if (settings["global"]["hydrometric"] == "enabled"):
+if (settings["global"]["hydrometric"]["parse"] == "enabled"):
     output["hydrometric"] = {}
     data["hydrometric"]= {}
     hydrometric = True
