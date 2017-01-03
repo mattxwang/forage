@@ -6,12 +6,23 @@ A set of tools to pull and parse information from the [Canadian Government's Wea
 Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with supported Python (2.7 and 3!) and Ruby scripts, both of which output to either CSV format or JSON format. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (removing some of the clutter). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
 
 In the future, we're planning to add:
-* PHP Support
+* Full PHP Support
 * Javascript Support (node-based)
 * Outputted Averages (e.g. average hourly in a day)
 * YAML Output
 * Support scripts
 * Support for other Weather Data (e.g. barometric data)
+
+## Support Matrix
+
+| Language | CSV | JSON | YAML | Write Parameter | Linting |  Help |
+| --- | --- | --- | --- | --- | --- | --- |
+| Python 2.7| Yes | Yes | No | Command Line | NPM-based | WIP |
+| Python 3+ | Yes | Yes | No | Command Line | NPM-based | WIP |
+| Ruby | Yes | Yes | Yes | Command Line | RubyGems-based | WIP |
+| PHP | Yes | Yes | No | In-file (WIP) | None | None |
+
+*Much more PHP support is coming soon.*
 
 ## Build Settings
 
@@ -66,12 +77,9 @@ Each endpoint has slightly different formats, but the general idea is the same. 
 | `timescale` | The supported timescales for your data type: `hydrometric` supports `hourly` and `daily` |
 | `root` | The root site we pull from, for now it should always be `http://dd.weather.gc.ca/` |
 
-## Script Parameters
+## File Outputs
 
-| Parameter | Description | Accepted Values | Supported Scripts |
-|---|---| --- | --- |
-| `-w` | Write Parameter: dictates what file type the output is written to. Outputs to `output-DATA-TYPE.FILE-TYPE` | none (default), `csv`, `json`, `yaml` (ruby only) | Python (2 and 3), Ruby |
-| `-h` | Help: displays help with the script (WIP) | N/A | Python (2 and 3), Ruby |
+All files are outputted to `output-DATA-TYPE.FILE-TYPE`, unless specifically specified.
 
 ## Python
 
@@ -95,7 +103,7 @@ You can use the script parameters with `forage.py` (if you don't, it doesn't out
 python forage.py -w json
 ```
 
-If you're running python 3, you might have to use the `python3` and `pip3` commands respectively. Other than that, everything should work!
+If you're running python 3, you might have to use the `python3` and `pip3` commands on the `forage-py3.py` file. Other than that, everything should work!
 
 ## Ruby
 
@@ -119,13 +127,25 @@ To use optional linting gems, first install them with bundle:
 bundle
 ```
 
-Then, use either the `csvlint` or  `jsonlint` commands.
+Then, use either the `csvlint`, `jsonlint`, or `yamllint` commands.
 
 ```
 csvlint output-hydrometric.csv
 
 jsonlint output.hydrometric.json
+
+yamllint output.hydrometric.yaml
 ```
+
+## PHP
+
+*Note: this PHP file was tested on PHP 5.6.10. More information on supported versions will come soon.*
+
+Our PHP project isn't command line; instead, the `forage.php` file is a viewable or importable PHP file that currently runs forage on view. Parameters are stored as variables in the file.
+
+So, in essence, grab a [LAMP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04) or [MAMP](https://www.mamp.info/en/) setup, and visit the `forage.php` file in your browser.
+
+POST and GET requests, as well as responses, will be supported soon.
 
 ## Team
 
