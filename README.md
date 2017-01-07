@@ -3,7 +3,7 @@
 
 A set of tools to pull and parse information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), for use with NorvalLabs.
 
-Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with supported Python (2.7 and 3!) and Ruby scripts, both of which output to either CSV format or JSON format. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (removing some of the clutter). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
+Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with supported Python (2.7 and 3!) and Ruby scripts, as well as a PHP file, which output to either CSV format or JSON format. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (removing some of the clutter). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
 
 In the future, we're planning to add:
 * Full PHP Support
