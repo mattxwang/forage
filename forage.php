@@ -1,6 +1,7 @@
 <?php
   $hydrometric = false;
   $write = false;
+  $echo = false;
   $data = [];
 
   // First, we're going to import the settings.json.
@@ -8,6 +9,19 @@
   if ($settings["global"]["hydrometric"]["parse"] == "enabled"){
     $hydrometric = true;
   }
+
+  if (isset($_GET["hydrometric"])){
+    $hydrometric = $_GET["hydrometric"];
+  }
+
+  if (isset($_GET["write"])){
+    $write = $_GET["write"];
+  }
+
+  if (isset($_GET["echo"])){
+    $echo = $_GET["echo"];
+  }
+
 
   // Now, we're going to fetch the data.
   foreach ($settings["endpoints"] as $k => $v) { // Iterates through each endpoint
@@ -49,4 +63,8 @@
     if ($hydrometric == true){
       file_put_contents('output-hydrometric.json', json_encode($data));
     }
+  }
+
+  if ($echo == "json" or $echo == "JSON"){
+    echo json_encode($data);
   }

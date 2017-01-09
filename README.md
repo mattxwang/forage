@@ -3,13 +3,12 @@
 
 A set of tools to pull and parse information from the [Canadian Government's Weather API](http://dd.weather.gc.ca/), for use with NorvalLabs.
 
-Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with supported Python (2.7 and 3!) and Ruby scripts, both of which output to either CSV format or JSON format. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (removing some of the clutter). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
+Currently, you'll be able to pull hydrometric data, or things like river flow rates and water levels. You can do so with Python (2.7 and 3+), Ruby, and PHP. Once it pulls the raw data from the API endpoint, it sorts the data, and then outputs it to an easily read format (JSON, CSV, and YAML is supported). Forage scripts work on any system that supports any of our script languages, as long as you have internet! This output is more likely to be easily read by other combined systems, and allows you to locally store the data.
 
 In the future, we're planning to add:
-* Full PHP Support
 * Javascript Support (node-based)
 * Outputted Averages (e.g. average hourly in a day)
-* YAML Output
+* Full YAML Output
 * Support scripts
 * Support for other Weather Data (e.g. barometric data)
 
@@ -17,10 +16,10 @@ In the future, we're planning to add:
 
 | Language | CSV | JSON | YAML | Write Parameter | Linting |  Help |
 | --- | --- | --- | --- | --- | --- | --- |
-| Python 2.7| Yes | Yes | No | Command Line | NPM-based | WIP |
-| Python 3+ | Yes | Yes | No | Command Line | NPM-based | WIP |
-| Ruby | Yes | Yes | Yes | Command Line | RubyGems-based | WIP |
-| PHP | Yes | Yes | No | In-file (WIP) | None | None |
+| Python 2.7| To File  | To File  | No | Command Line | NPM-based | WIP |
+| Python 3+ | To File  | To File  | No | Command Line | NPM-based | WIP |
+| Ruby | To File  | To File  | To File  | Command Line | RubyGems-based | WIP |
+| PHP | To File  | To File, Echo  | No | In-file, GET Request | None | None |
 
 *Much more PHP support is coming soon.*
 
@@ -145,7 +144,11 @@ Our PHP project isn't command line; instead, the `forage.php` file is a viewable
 
 So, in essence, grab a [LAMP](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04) or [MAMP](https://www.mamp.info/en/) setup, and visit the `forage.php` file in your browser.
 
-POST and GET requests, as well as responses, will be supported soon.
+There are three ways to configure the `forage.php` file: `settings.json`, in-file, or through a `GET` request. The first two are relatively self-explanatory, and already documented in this README.
+
+`GET` requests have two (optional) parameters (that default to `false`):
+* `echo`, which determines what type of information is echoed to the page (very handy for AJAX requests)
+* `write`, which determines what type of information is written to the file
 
 ## Team
 
