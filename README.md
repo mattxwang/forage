@@ -21,8 +21,6 @@ In the future, we're planning to add:
 | Ruby | To File  | To File  | To File  | Command Line | RubyGems-based | WIP |
 | PHP | To File  | To File, Echo  | No | In-file, GET Request | None | None |
 
-*Much more PHP support is coming soon.*
-
 ## Build Settings
 
 `settings.json` acts as a settings file for all the build scripts, regardless of language. We include a sample `settings.json` in this project. Here's a look at it:
@@ -149,6 +147,16 @@ There are three ways to configure the `forage.php` file: `settings.json`, in-fil
 `GET` requests have two (optional) parameters (that default to `false`):
 * `echo`, which determines what type of information is echoed to the page (very handy for AJAX requests)
 * `write`, which determines what type of information is written to the file
+
+The table above details what data types are supported.
+
+Here are a few examples of sample URLS:
+
+```
+https://YOUR-FORAGE-URL.ca/forage/forage.php
+https://YOUR-FORAGE-URL.ca/forage/forage.php?write=csv
+https://YOUR-FORAGE-URL.ca/forage/forage.php?write=json&echo=json
+```
 
 ## Team
 
